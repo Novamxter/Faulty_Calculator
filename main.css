@@ -1,0 +1,32 @@
+*{
+  margin:0;
+  padding:0;
+}
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.display-panel{
+  height:200px;
+  width:320px;
+  margin:10px auto;
+  position:relative;
+  background-color: gray;
+}
+.display{
+  position:absolute;
+  bottom:0;
+  right:0;
+  font-size: 40px;
+  color:white;
+}
+.panel{
+  display: grid;
+  grid-template-columns: 80px 80px 80px 80px;
+}
+button{
+  height:40px;
+  font-size: 20px;
+}
