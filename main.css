@@ -23,7 +23,8 @@ main{
   display:flex;
   flex-direction: column;
   justify-content: flex-end;
-  direction: rtl;
+  direction: rtl !important;
+  unicode-bidi: bidi-override !important;
   position:relative;
   right:0;
   padding-right:15px;
@@ -35,10 +36,11 @@ main{
   font-size: 45px;
   margin-left:auto;
   margin-bottom:20px;
-  direction: ltr;
   overflow-x: auto;
   white-space: nowrap;
   max-width: 100%;
+  direction: ltr !important;
+  unicode-bidi: bidi-override !important; /* Forces proper rendering */
 }
 
 .display-panel::-webkit-scrollbar {
@@ -52,7 +54,8 @@ main{
   left:50%;
   transform: translateX(-50%);
   background-color: rgb(51,102,255);
-  direction: ltr;
+  direction: ltr !important;
+  unicode-bidi: bidi-override !important;
   border-radius:20px;
   padding:0 15px;
 }
