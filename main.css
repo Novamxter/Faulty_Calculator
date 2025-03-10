@@ -34,6 +34,7 @@ main{
   text-align: right;
   font-size: 45px;
   margin-left:auto;
+  margin-bottom:20px;
   direction: ltr;
   overflow-x: auto;
   white-space: nowrap;
