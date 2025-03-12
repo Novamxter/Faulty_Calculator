@@ -1,94 +1,115 @@
-import { adjustFontSize, scrollLeft } from "./handle-display.js";
+import {
+  adjustFontSize,
+  scrollLeft,
+  fontSize,
+  faultyModeOn,
+  faultyModeOff,
+  initialTimeout
+} from "./handle-display.js";
 
 let chance;
-let equation = "";
+let equation = getEquation() || "";
 let result = "";
+let isfaulty = JSON.parse(localStorage.getItem("faulty"))||false;//Converted to Boolean value back (false not "false")
+displayEq(equation);
+initialTimeout(isfaulty);
 document.getElementById("panel").addEventListener("click", function (event) {
+  handleMainLogic(event.target);
+  adjustFontSize();
+  saveEquation(equation);
+});
+
+function handleMainLogic(element) {
   scrollLeft();
   chance = Math.random();
-  if (event.target.classList.contains("digit")) {
-    equation += event.target.textContent;
+  if (element.classList.contains("digit")) {
+    equation += element.textContent;
     displayEq(equation);
-    saveToStorage(equation);
-    // console.log(`equation is : ${equation}`);
-  } else if (event.target.classList.contains("operation")) {
-    if (chance < 0.1) {
-      equation = faultyCalc(event.target);
-      displayEq(equation);
-      saveToStorage(equation);
-    } else {
-      const op = event.target.getAttribute("data-value");
-      equation += op;
-      displayEq(equation);
-      saveToStorage(equation);
-    }
-  } else if (event.target.classList.contains("percent")) {
+    return;
+  } else if (element.classList.contains("operation")) {
+    equation += element.getAttribute("data-value");
+    displayEq(equation);
+    return;
+  } else if (element.classList.contains("percent")) {
     equation += "/100";
     result = eval(equation);
     equation = result;
     displayResult(result);
     roundUp(result);
-  } else if (event.target.classList.contains("equal")) {
+    return;
+  } else if (element.classList.contains("equal")) {
+    if (equation === "2410") {
+      isfaulty = true;
+      faultyModeOn();
+      equation = "";
+      saveEquation(equation);
+      displayEq(equation);
+      return;
+    } else if (equation === "968") {
+      isfaulty = false;
+      faultyModeOff();
+      equation = "";
+      saveEquation(equation);
+      displayEq(equation);
+      return;
+    }
+    localStorage.setItem("faulty",isfaulty)
     try {
       if (equation.trim() === "") {
         alert("Please Enter something");
-      } else {
-        if (/^[0-9+\-*/().]+$/.test(equation)) {
-          adjustFontSize();
-          result = eval(equation);
-          localStorage.setItem("result", result);
-          equation = result;
-          displayResult(result);
-          roundUp(result);
+      }
+      if (/^-?\d+(\.\d+)?$/.test(equation)) {
+        return; // Do nothing if it's just a single number
+      }
+      if (/^[0-9+\-*/().]+$/.test(equation)) {
+        if (chance < 0.2 && isfaulty) {
+          let falResult = faultyCalc(equation);
+          result = String(eval(falResult));
         } else {
-          alert("Invalid Equation");
+          result = String(eval(equation));
         }
+        equation = result;
+        displayResult(result);
+        roundUp(result);
       }
     } catch (e) {
       alert("Invalid Equation");
     }
-  } else if (event.target.classList.contains("dot")) {
+  } else if (element.classList.contains("dot")) {
     equation += ".";
     displayEq(equation);
-    saveToStorage(equation);
-  } else if (event.target.classList.contains("clear")) {
+    return;
+  } else if (element.classList.contains("clear")) {
+    fontSize.currentFontSize = 45;
     equation = "";
     clearRoundUp();
     displayEq(equation);
-    saveToStorage(equation);
-    adjustFontSize();
-  } else if (event.target.classList.contains("back")) {
-    equation = equation.slice(0, -1);
+  } else if (element.classList.contains("back")) {
+    equation = equation.toString().slice(0, -1);
     displayEq(equation);
-    saveToStorage(equation);
   }
-});
-function faultyCalc(hit) {
-  const op = hit.getAttribute("data-value");
-  if (op === "/") {
-    equation += "*";
-  } else if (op === "+") {
-    equation += "-";
-  } else if (op === "-") {
-    equation += "/";
-  } else if (op === "*") {
-    equation += "+";
-  }
-  return equation;
 }
-function saveToStorage(equation) {
+
+function faultyCalc(hit) {
+  //Used temporary placeholder for Cascading Replacement Bug
+  return hit
+    .replace(/\+/g, "temp")
+    .replace(/\-/g, "/")
+    .replace(/\//g, "*")
+    .replace(/\*/g, "+")
+    .replace(/temp/g, "-");
+}
+function saveEquation(equation) {
   localStorage.setItem("equation", equation);
 }
-function getFromStorage() {
-  return localStorage.getItem("result");
+function getEquation() {
+  return localStorage.getItem("equation");
 }
 function displayResult(result) {
-  adjustFontSize();
   document.querySelector(".display").innerHTML = result;
 }
-function displayEq(equation) {
-  adjustFontSize();
-  document.querySelector(".display").innerHTML = equation
+function displayEq(eq) {
+  document.querySelector(".display").innerHTML = eq
     .replace(/\*/g, "×")
     .replace(/\//g, "÷");
 }
