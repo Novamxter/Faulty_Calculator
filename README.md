@@ -19,13 +19,13 @@ The Faulty Calculator is a fun and interactive JavaScript project designed to en
 
   With a 20% probability, the calculator randomly swaps operators:
 
-  Multiplication (_) --> Division (/)
+  Multiplication (*) --> Addition (+)
 
-  Subtraction (-) --> Addition (+)
+  Subtraction (-) --> Division (/)
 
-  Division (/) --> Subtraction (-)
+  Division (/) --> Multiplication (*)
 
-  Addition (+) --> Multiplication (_)
+  Addition (+) --> Subtraction (-)
 
 - **Faulty Mode Notification:**
 
@@ -71,7 +71,7 @@ The Faulty Calculator is a fun and interactive JavaScript project designed to en
 
 ## **Demo**
 
-Live Preview: [https://novamxter.github.io/Faulty_Calculator/]
+  Live Preview: [https://novamxter.github.io/Faulty_Calculator/]
 
 ## **Installation**
 
@@ -83,11 +83,11 @@ Live Preview: [https://novamxter.github.io/Faulty_Calculator/]
 
 ## **Future Improvements**
 
-More error variations for added fun
+  More error variations for added fun
 
-Customizable faulty mode settings
+  Customizable faulty mode settings
 
-Enhanced UI/UX with theme options
+  Enhanced UI/UX with theme options
 
 ## **Contributing**
 
