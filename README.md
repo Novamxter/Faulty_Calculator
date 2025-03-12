@@ -8,56 +8,52 @@ The Faulty Calculator is a fun and interactive JavaScript project designed to en
 ## **Features**
 
 - **Switchable Faulty Mode:**
-  
-By default, the calculator behaves normally.
 
-Enter a secret code to activate Faulty Mode, which introduces a 20% error rate.
+  By default, the calculator behaves normally.
 
-Enter another secret code to deactivate Faulty Mode and return to normal behavior.
+  Enter a secret code to activate Faulty Mode, which introduces a 20% error rate.
 
+  Enter another secret code to deactivate Faulty Mode and return to normal behavior.
 
 - **Intentional Calculation Errors (Faulty Mode Only):**
 
-With a 20% probability, the calculator randomly swaps operators:
+  With a 20% probability, the calculator randomly swaps operators:
 
-Multiplication (*) --> Division (/)
-Subtraction (-) --> Addition (+)
-Division (/) --> Subtraction (-)
-Addition (+) --> Multiplication (*)
+  Multiplication (_) --> Division (/)
 
+  Subtraction (-) --> Addition (+)
+
+  Division (/) --> Subtraction (-)
+
+  Addition (+) --> Multiplication (_)
 
 - **Faulty Mode Notification:**
 
-When Faulty Mode is toggled, a brief animation (0.8s) notifies the user.
-
+  When Faulty Mode is toggled, a brief animation (0.8s) notifies the user.
 
 - **Equation Persistence:**
 
-The last entered equation is saved in localStorage.
+  The last entered equation is saved in localStorage.
 
-When reopening the calculator, it retains its last state (including Faulty Mode status).
-
+  When reopening the calculator, it retains its last state (including Faulty Mode status).
 
 - **Adaptive Equation Display:**
 
-If the equation length exceeds the container, it shrinks to fit.
+  If the equation length exceeds the container, it shrinks to fit.
 
-Once the font size reaches 30px, a scroll appears instead.
-
+  Once the font size reaches 30px, a scroll appears instead.
 
 - **Quick Estimate Panel:**
 
-Displays large decimal numbers with an approximate value (up to 3 decimal places) for better readability.
-
+  Displays large decimal numbers with an approximate value (up to 3 decimal places) for better readability.
 
 ## **Technologies Used**
 
-HTML – Structure of the calculator
+  **HTML –** Structure of the calculator
 
-CSS – Styling and responsive adjustments
+  **CSS –** Styling and responsive adjustments
 
-JavaScript – Functional logic, faulty mode, and localStorage persistence
-
+  **JavaScript –** Functional logic, faulty mode, and localStorage persistence
 
 ## **How It Works**
 
@@ -73,7 +69,6 @@ JavaScript – Functional logic, faulty mode, and localStorage persistence
 
 6. The last equation and mode are saved and restored when the calculator is reopened.
 
-
 ## **Demo**
 
 Live Preview: [https://novamxter.github.io/Faulty_Calculator/]
@@ -82,11 +77,9 @@ Live Preview: [https://novamxter.github.io/Faulty_Calculator/]
 
 1. Clone the repository:
 
-git clone https://github.com/novamxter/Faulty-calculator.git
-
+  git clone https://github.com/novamxter/Faulty-calculator.git
 
 2. Open index.html in your browser.
-
 
 ## **Future Improvements**
 
@@ -95,7 +88,6 @@ More error variations for added fun
 Customizable faulty mode settings
 
 Enhanced UI/UX with theme options
-
 
 ## **Contributing**
 
